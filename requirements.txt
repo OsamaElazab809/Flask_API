@@ -1,6 +1,0 @@
-flask
-ultralytics
-easyocr
-opencv-python
-numpy
-torch

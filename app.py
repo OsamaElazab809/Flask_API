@@ -1,3 +1,14 @@
+# Deploy on GitHup 
+# git init
+# git add .
+# git commit -m "Initial commit"
+# git config --global user.name "Osama Elazab"
+# git config --global user.email "osamaelazab809@gmail.com"
+# git branch -M main
+# git remote add origin https://github.com/OsamaElazab809/flask.git // link of repositry
+# git push -u origin main
+
+
 from flask import Flask, request, jsonify
 from ultralytics import YOLO
 import easyocr
@@ -5,9 +16,6 @@ import base64
 import cv2
 import numpy as np
 
-# import torch
-# print(torch.__version__)                # should be 2.x.y (>=2.0.0)
-# print(torch.backends.mkldnn.is_available())  # usually True
 
 import torch
 # Disable oneDNN/MKLDNN so conv2d uses the pure-PyTorch kernels
@@ -47,11 +55,11 @@ def predict():
     data = request.get_json()
     if not data or 'image' not in data:
         return jsonify({"error": "No image provided"}), 400
-    # print("data recived")
+    
     image = decode_base64_image(data['image'])
     if image is None:
         return jsonify({"error": "Invalid base64 image"}), 400
-    # print("image recieved")
+
     plates = predict_license_plates(image)
     # print(plates[0])
     print(plates)
